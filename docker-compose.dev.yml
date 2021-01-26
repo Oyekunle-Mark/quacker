@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: stackoverflow_clone_nginx
+    build:
+      context: ./nginx
+      dockerfile: nginx.dockerfile
+    depends_on:
+      - api
+    ports:
+      - "7201:7201"
+    volumes:
+      - "./nginx/log:/var/log/nginx"
+    networks:
+      - stackoverflow_clone_network
+
+  api:
+    container_name: stackoverflow_clone_api
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./api
+    ports:
+      - "5201"
+    volumes:
+      - "./api:/home/node/app"
+      - "./api/docker/run.sh:/usr/bin/run.sh"
+    depends_on:
+      - database
+    environment:
+      NODE_ENV: 'development'
+      PORT: 5201
+      DB_USERNAME: 'root'
+      DB_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
+      DB_NAME: 'stackoverflow_clone_dev'
+      DB_HOSTNAME: stackoverflow_clone_mysql
+      DB_PORT: 3306
+      JWT_SECRET: 'you_shall_not_pass'
+    networks:
+      - stackoverflow_clone_network
+
+  database:
+    image: mysql:8.0.23
+    container_name: stackoverflow_clone_mysql
+    ports:
+      - "3306"
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./mysql/init.sql:/data/application/init.sql
+      - ./mysql/.data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_USER: 'root'
+      MYSQL_ROOT_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
+      MYSQL_DATABASE: 'stackoverflow_clone_dev'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
+    networks:
+      - stackoverflow_clone_network
+
+networks:
+  stackoverflow_clone_network:
