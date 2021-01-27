@@ -32,7 +32,7 @@ services:
       PORT: 5201
       DB_USERNAME: 'root'
       DB_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
-      DB_NAME: 'stackoverflow_clone_dev'
+      DB_NAME: 'cloneDev'
       DB_HOSTNAME: stackoverflow_clone_mysql
       DB_PORT: 3306
       JWT_SECRET: 'you_shall_not_pass'
@@ -51,11 +51,15 @@ services:
     environment:
       MYSQL_ROOT_USER: 'root'
       MYSQL_ROOT_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
-      MYSQL_DATABASE: 'stackoverflow_clone_dev'
+      MYSQL_DATABASE: 'cloneDev'
       MYSQL_USER: 'root'
       MYSQL_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
+      MYSQL_ROOT_HOST: '%'
     networks:
       - stackoverflow_clone_network
+
+volumes:
+  mysql_volume:
 
 networks:
   stackoverflow_clone_network:
