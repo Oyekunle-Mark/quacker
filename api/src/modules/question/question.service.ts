@@ -31,5 +31,6 @@ export interface IFindQuestion {
  * @param {Object} findClause the where clause of the query
  * @return {Promise<IQuestion[]>}
  */
-const findQuestionByField = (findClause: IFindQuestion): Promise<IQuestion[]> =>
-  Question.findAll({ where: findClause, raw: true })
+export const findQuestionByField = (
+  findClause: IFindQuestion
+): Promise<IQuestion[]> => Question.findAll({ where: findClause, raw: true })
