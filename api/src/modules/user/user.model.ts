@@ -8,8 +8,7 @@ export interface IUser extends Model {
   password: string
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const User: Model<IUser> = database.define<IUser>(
+export const User = database.define<IUser>(
   'User',
   {
     id: {
@@ -26,11 +25,11 @@ export const User: Model<IUser> = database.define<IUser>(
       allowNull: false,
     },
     email: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     password: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
