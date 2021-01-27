@@ -44,3 +44,10 @@ export const Question = database.define<IQuestion>(
     timestamps: true,
   }
 )
+
+User.hasMany(Question, {
+  foreignKey: 'creatorId',
+})
+Question.belongsTo(User, {
+  foreignKey: 'creatorId',
+})

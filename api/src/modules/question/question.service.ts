@@ -1,4 +1,5 @@
 import { Question, IQuestion } from './question.model'
+import { User } from '../user/user.model'
 
 /**
  * Creates a question
@@ -34,4 +35,17 @@ export interface IFindQuestion {
  */
 export const findQuestionByField = (
   findClause: IFindQuestion
-): Promise<IQuestion[]> => Question.findAll({ where: findClause, raw: true })
+): Promise<IQuestion[]> =>
+  Question.findAll({
+    where: findClause,
+    raw: true,
+    attributes: {
+      exclude: ['creatorId']
+    },
+    include: [
+      {
+        model: User,
+        attributes: ['id', 'firstName', 'email'],
+      },
+    ],
+  })
