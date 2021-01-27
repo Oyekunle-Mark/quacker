@@ -7,6 +7,7 @@ import rTracer from 'cls-rtracer'
 import fs from 'fs'
 import path from 'path'
 import { createResponse, HttpStatus, ResponseType } from './common'
+import { userRoute } from './modules'
 
 const server = express()
 
@@ -47,6 +48,8 @@ server.get('/api', (_, res: Response) =>
     'Server is up!'
   )
 )
+
+server.use('/api/auth', userRoute)
 
 server.use((_, res: Response) =>
   createResponse(
