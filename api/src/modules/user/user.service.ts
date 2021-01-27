@@ -32,6 +32,6 @@ export const createUser = async (
 export const findUser = (email: string): Promise<IUser> => {
   return User.findOne({
     where: { email: email.toLowerCase() },
-    attributes: ['email'],
+    attributes: ['email', 'password'],
   })
 }
