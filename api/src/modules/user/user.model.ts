@@ -9,7 +9,7 @@ export interface IUser extends Model {
 }
 
 export const User = database.define<IUser>(
-  'User',
+  'user',
   {
     id: {
       type: DataTypes.UUID,

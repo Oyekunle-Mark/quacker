@@ -7,20 +7,25 @@ import { User, IUser } from './user.model'
  * @param {String} lastName
  * @param {String}  email
  * @param {String}  password
- * @return {Promise<Document>}
+ * @return {Promise<{ id: string, email: string }>}
  */
 export const createUser = async (
   firstName: string,
   lastName: string,
   email: string,
   password: string
-): Promise<IUser> => {
-  return await User.create({
+): Promise<{ id: string; email: string }> => {
+  const newUser = await User.create({
     firstName,
     lastName,
     email: email.toLowerCase(),
     password,
   })
+
+  return {
+    id: newUser.id,
+    email: newUser.email,
+  }
 }
 
 /**
@@ -32,6 +37,7 @@ export const createUser = async (
 export const findUser = (email: string): Promise<IUser> => {
   return User.findOne({
     where: { email: email.toLowerCase() },
-    attributes: ['email', 'password'],
+    attributes: ['id', 'email', 'password'],
+    raw: true,
   })
 }

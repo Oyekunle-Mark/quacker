@@ -17,14 +17,15 @@ export const register = async (
 
   try {
     const hashedPassword = await hash(password)
-    const newUser = await createUser(firstName, lastName, email, hashedPassword)
+    const user = await createUser(firstName, lastName, email, hashedPassword)
 
-    return createResponse(
-      res,
-      HttpStatus.StatusCreated,
-      ResponseType.Success,
-      newUser
-    )
+    const token = sign(user)
+
+    return createResponse(res, HttpStatus.StatusCreated, ResponseType.Success, {
+      id: user.id,
+      email: user.email,
+      token,
+    })
   } catch (err) {
     return createResponse(
       res,
@@ -56,7 +57,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
       )
     }
 
-    const isMatch: boolean = await compare(password, user.password)
+    const isMatch: boolean = await compare(password, user.password.toString())
 
     if (!isMatch) {
       return createResponse(
