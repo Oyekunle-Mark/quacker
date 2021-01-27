@@ -24,6 +24,7 @@ export const createQuestion = async (
 
 export interface IFindQuestion {
   creatorId?: string
+  id?: string
 }
 
 /**
