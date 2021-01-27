@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS stackoverflow_clone_dev;
 USE stackoverflow_clone_dev;
 
 CREATE TABLE IF NOT EXISTS users (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(36) NOT NULL PRIMARY KEY,
     firstName VARCHAR(255) NOT NULL,
     lastName VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,

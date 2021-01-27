@@ -12,9 +12,10 @@ export const User = database.define<IUser>(
   'User',
   {
     id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
+      type: DataTypes.UUID,
       primaryKey: true,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
     },
     firstName: {
       type: DataTypes.STRING,
