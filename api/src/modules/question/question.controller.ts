@@ -44,7 +44,7 @@ export const saveQuestion = async (
  * @param {Response} res
  * @return {Promise<Response>}
  */
-export const qetQuestions = async (
+export const getQuestions = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
@@ -73,7 +73,7 @@ export const qetQuestions = async (
  * @param {Response} res
  * @return {Promise<Response>}
  */
-export const qetUserQuestions = async (
+export const getUserQuestions = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
