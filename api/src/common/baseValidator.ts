@@ -12,9 +12,11 @@ export class BaseValidator {
 
     if (errors.isEmpty()) return next()
 
-    const extractedErrors: string[] = []
+    const extractedErrors: { [x: string]: string }[] = []
 
-    errors.array().forEach((err) => extractedErrors.push(err.msg))
+    errors
+      .array()
+      .forEach((err) => extractedErrors.push({ [err.param]: err.msg }))
 
     return createResponse(
       res,
