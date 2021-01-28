@@ -50,8 +50,8 @@ server.get('/api', (_, res: Response) =>
 )
 
 server.use('/api/auth', userRoute)
-server.use('/api/question', questionRoute)
-server.use('/api/answer', answerRoute)
+server.use('/api/questions', questionRoute)
+server.use('/api/answers', answerRoute)
 
 server.use((_, res: Response) =>
   createResponse(

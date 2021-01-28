@@ -48,6 +48,7 @@ export const findQuestionByField = (
         attributes: ['id', 'firstName', 'email'],
       },
     ],
+    order: [['updatedAt', 'DESC']],
   })
 
 /**

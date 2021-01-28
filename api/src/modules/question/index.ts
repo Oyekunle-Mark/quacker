@@ -19,13 +19,13 @@ questionRoute.post(
 )
 
 questionRoute.get(
-  '/one/:id',
+  '/question/:id',
   QuestionValidator.getQuestionValidationRules(),
   QuestionValidator.validate,
   getQuestion
 )
 
-questionRoute.get('/all', verifyToken, getQuestions)
+questionRoute.get('/', verifyToken, getQuestions)
 
 questionRoute.get('/user', verifyToken, getUserQuestions)
 
