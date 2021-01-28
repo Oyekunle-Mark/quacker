@@ -1,5 +1,6 @@
 import { Question, IQuestion } from './question.model'
 import { User } from '../user/user.model'
+import { Answer } from '../answer/answer.model'
 
 /**
  * Creates a question
@@ -38,14 +39,44 @@ export const findQuestionByField = (
 ): Promise<IQuestion[]> =>
   Question.findAll({
     where: findClause,
-    raw: true,
     attributes: {
-      exclude: ['creatorId']
+      exclude: ['creatorId'],
     },
     include: [
       {
         model: User,
         attributes: ['id', 'firstName', 'email'],
+      },
+    ],
+  })
+
+/**
+ * finds a question by id
+ * @param {String} questionId the where clause of the query
+ * @return {Promise<IQuestion>}
+ */
+export const findQuestionId = (questionId: string): Promise<IQuestion[]> =>
+  Question.findOne({
+    where: { id: questionId },
+    attributes: {
+      exclude: ['creatorId'],
+    },
+    include: [
+      {
+        model: User,
+        attributes: ['id', 'firstName', 'email'],
+      },
+      {
+        model: Answer,
+        attributes: {
+          exclude: ['creatorId', 'questionId'],
+        },
+        include: [
+          {
+            model: User,
+            attributes: ['id', 'firstName', 'email'],
+          },
+        ],
       },
     ],
   })

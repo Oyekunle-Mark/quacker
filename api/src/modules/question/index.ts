@@ -3,6 +3,7 @@ import {
   saveQuestion,
   getQuestions,
   getUserQuestions,
+  getQuestion,
 } from './question.controller'
 import QuestionValidator from './question.validation'
 import { verifyToken } from '../../common'
@@ -17,7 +18,14 @@ questionRoute.post(
   saveQuestion
 )
 
-questionRoute.get('/', verifyToken, getQuestions)
+questionRoute.get(
+  '/one/:id',
+  QuestionValidator.getQuestionValidationRules(),
+  QuestionValidator.validate,
+  getQuestion
+)
+
+questionRoute.get('/all', verifyToken, getQuestions)
 
 questionRoute.get('/user', verifyToken, getUserQuestions)
 

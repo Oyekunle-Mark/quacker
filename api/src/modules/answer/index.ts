@@ -10,6 +10,7 @@ answerRoute.post(
   verifyToken,
   AnswerValidator.createAnswerValidationRules(),
   AnswerValidator.validate,
+  AnswerValidator.checkQuestionExist,
   answerQuestion
 )
 

@@ -1,5 +1,9 @@
 import { Request, Response } from 'express'
-import { createQuestion, findQuestionByField } from './question.service'
+import {
+  createQuestion,
+  findQuestionByField,
+  findQuestionId,
+} from './question.service'
 import { createResponse, HttpStatus, ResponseType } from '../../common'
 
 /**
@@ -98,6 +102,37 @@ export const getUserQuestions = async (
       HttpStatus.StatusInternalServerError,
       ResponseType.Failure,
       `Error getting user questions: ${err.message}`
+    )
+  }
+}
+
+/**
+ * Get a single question
+ * @param {Request} req
+ * @param {Response} res
+ * @return {Promise<Response>}
+ */
+export const getQuestion = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const { id } = req.params
+
+    const question = await findQuestionId(id)
+
+    return createResponse(
+      res,
+      HttpStatus.StatusOk,
+      ResponseType.Success,
+      question
+    )
+  } catch (err) {
+    return createResponse(
+      res,
+      HttpStatus.StatusInternalServerError,
+      ResponseType.Failure,
+      `Error getting question: ${err.message}`
     )
   }
 }

@@ -1,4 +1,4 @@
-import { body, ValidationChain } from 'express-validator'
+import { body, param, ValidationChain } from 'express-validator'
 import { BaseValidator } from '../../common'
 
 export default class QuestionValidator extends BaseValidator {
@@ -10,6 +10,14 @@ export default class QuestionValidator extends BaseValidator {
       body('content')
         .isLength({ min: 10 })
         .withMessage('content must be at least 10 characters'),
+    ]
+  }
+
+  static getQuestionValidationRules(): ValidationChain[] {
+    return [
+      param('id')
+        .isUUID('all')
+        .withMessage('Provide a valid UUID request parameter.'),
     ]
   }
 }

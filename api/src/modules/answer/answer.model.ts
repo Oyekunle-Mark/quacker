@@ -43,3 +43,16 @@ export const Answer = database.define<IAnswer>(
     timestamps: true,
   }
 )
+
+User.hasMany(Answer, {
+  foreignKey: 'creatorId',
+})
+Answer.belongsTo(User, {
+  foreignKey: 'creatorId',
+})
+Question.hasMany(Answer, {
+  foreignKey: 'questionId',
+})
+Answer.belongsTo(Question, {
+  foreignKey: 'questionId',
+})
