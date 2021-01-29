@@ -120,3 +120,6 @@ dist
 
 # editor config
 .idea
+
+#  test output
+testOutput.json
