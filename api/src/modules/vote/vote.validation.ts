@@ -1,18 +1,19 @@
 import { body, ValidationChain } from 'express-validator'
 import { BaseValidator } from '../../common'
+import { VoteType } from './vote.model'
 import { findQuestionByField } from '../question/question.service'
 import { createResponse, HttpStatusCode, ResponseStatus } from '../../common'
 import { NextFunction, Request, Response } from 'express'
 
-export default class AnswerValidator extends BaseValidator {
-  static createAnswerValidationRules(): ValidationChain[] {
+export default class VoteValidator extends BaseValidator {
+  static createVoteValidationRules(): ValidationChain[] {
     return [
       body('questionId')
         .isUUID('all')
         .withMessage('questionId must be a valid uuid'),
-      body('content')
-        .isLength({ min: 10 })
-        .withMessage('content must be at least 10 characters'),
+      body('voteType')
+        .isIn(Object.values(VoteType))
+        .withMessage(`voteType can be any of ${Object.values(VoteType)}`),
     ]
   }
 

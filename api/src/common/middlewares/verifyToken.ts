@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { verify } from '../../utils'
-import { createResponse, HttpStatus, ResponseType } from '../.'
+import { createResponse, HttpStatusCode, ResponseStatus } from '../.'
 
 /**
  * Middleware to check if client has an active token
@@ -21,8 +21,8 @@ export const verifyToken = async (
     if (!authHeader)
       return createResponse(
         res,
-        HttpStatus.StatusUnauthorized,
-        ResponseType.Failure,
+        HttpStatusCode.StatusUnauthorized,
+        ResponseStatus.Failure,
         'Please provide an authorization header'
       )
 
@@ -31,8 +31,8 @@ export const verifyToken = async (
     if (prefix !== 'Bearer' || !token)
       return createResponse(
         res,
-        HttpStatus.StatusUnauthorized,
-        ResponseType.Failure,
+        HttpStatusCode.StatusUnauthorized,
+        ResponseStatus.Failure,
         'Please provide a valid header prefix and token'
       )
 
@@ -41,8 +41,8 @@ export const verifyToken = async (
     if (!payload)
       return createResponse(
         res,
-        HttpStatus.StatusUnauthorized,
-        ResponseType.Failure,
+        HttpStatusCode.StatusUnauthorized,
+        ResponseStatus.Failure,
         'Invalid token'
       )
 
@@ -55,15 +55,15 @@ export const verifyToken = async (
     if (err.message === 'jwt expired')
       return createResponse(
         res,
-        HttpStatus.StatusUnauthorized,
-        ResponseType.Failure,
+        HttpStatusCode.StatusUnauthorized,
+        ResponseStatus.Failure,
         `${err.message}`
       )
 
     return createResponse(
       res,
-      HttpStatus.StatusInternalServerError,
-      ResponseType.Failure,
+      HttpStatusCode.StatusInternalServerError,
+      ResponseStatus.Error,
       `Error: ${err.message}`
     )
   }

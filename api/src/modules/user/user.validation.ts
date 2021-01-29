@@ -1,8 +1,8 @@
-import { body, ValidationChain} from 'express-validator'
+import { body, ValidationChain } from 'express-validator'
 import { Request, Response, NextFunction } from 'express'
 import { BaseValidator } from '../../common'
 import { findUser } from './user.service'
-import { createResponse, HttpStatus, ResponseType } from '../../common'
+import { createResponse, HttpStatusCode, ResponseStatus } from '../../common'
 
 export default class UserValidator extends BaseValidator {
   static registerValidationRules(): ValidationChain[] {
@@ -41,8 +41,8 @@ export default class UserValidator extends BaseValidator {
       if (user) {
         return createResponse(
           res,
-          HttpStatus.StatusUnprocessableEntity,
-          ResponseType.Failure,
+          HttpStatusCode.StatusBadRequest,
+          ResponseStatus.Failure,
           'Email already exist.'
         )
       }
@@ -51,8 +51,8 @@ export default class UserValidator extends BaseValidator {
     } catch (e) {
       return createResponse(
         res,
-        HttpStatus.StatusInternalServerError,
-        ResponseType.Failure,
+        HttpStatusCode.StatusInternalServerError,
+        ResponseStatus.Error,
         `Error checking existing email: ${e.message}`
       )
     }

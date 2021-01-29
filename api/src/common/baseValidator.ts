@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { validationResult } from 'express-validator'
-import { createResponse, HttpStatus, ResponseType } from './'
+import { createResponse, HttpStatusCode, ResponseStatus } from './'
 
 export class BaseValidator {
   static validate(
@@ -12,14 +12,16 @@ export class BaseValidator {
 
     if (errors.isEmpty()) return next()
 
-    const extractedErrors: string[] = []
+    const extractedErrors: { [x: string]: string }[] = []
 
-    errors.array().forEach((err) => extractedErrors.push(err.msg))
+    errors
+      .array()
+      .forEach((err) => extractedErrors.push({ [err.param]: err.msg }))
 
     return createResponse(
       res,
-      HttpStatus.StatusUnprocessableEntity,
-      ResponseType.Failure,
+      HttpStatusCode.StatusUnprocessableEntity,
+      ResponseStatus.Failure,
       extractedErrors
     )
   }

@@ -17,6 +17,12 @@ export interface IVote extends Model {
 export const Vote = database.define<IVote>(
   'vote',
   {
+    id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+    },
     voterId: {
       type: DataTypes.UUID,
       allowNull: false,

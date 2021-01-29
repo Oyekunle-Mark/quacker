@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { createUser, findUser } from './user.service'
-import { createResponse, HttpStatus, ResponseType } from '../../common'
+import { createResponse, HttpStatusCode, ResponseStatus } from '../../common'
 import { sign, hash, compare } from '../../utils'
 
 /**
@@ -21,16 +21,21 @@ export const register = async (
 
     const token = sign(user)
 
-    return createResponse(res, HttpStatus.StatusCreated, ResponseType.Success, {
-      id: user.id,
-      email: user.email,
-      token,
-    })
+    return createResponse(
+      res,
+      HttpStatusCode.StatusCreated,
+      ResponseStatus.Success,
+      {
+        id: user.id,
+        email: user.email,
+        token,
+      }
+    )
   } catch (err) {
     return createResponse(
       res,
-      HttpStatus.StatusInternalServerError,
-      ResponseType.Failure,
+      HttpStatusCode.StatusInternalServerError,
+      ResponseStatus.Error,
       `Error registering user: ${err.message}`
     )
   }
@@ -51,8 +56,8 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     if (!user) {
       return createResponse(
         res,
-        HttpStatus.StatusUnauthorized,
-        ResponseType.Failure,
+        HttpStatusCode.StatusUnauthorized,
+        ResponseStatus.Failure,
         'Invalid login credentials provided.'
       )
     }
@@ -62,8 +67,8 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     if (!isMatch) {
       return createResponse(
         res,
-        HttpStatus.StatusUnauthorized,
-        ResponseType.Failure,
+        HttpStatusCode.StatusUnauthorized,
+        ResponseStatus.Failure,
         'Invalid login credentials provided.'
       )
     }
@@ -77,16 +82,21 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
       email: user.email,
     })
 
-    return createResponse(res, HttpStatus.StatusOk, ResponseType.Success, {
-      id: userId,
-      email: user.email,
-      token,
-    })
+    return createResponse(
+      res,
+      HttpStatusCode.StatusOk,
+      ResponseStatus.Success,
+      {
+        id: userId,
+        email: user.email,
+        token,
+      }
+    )
   } catch (err) {
     return createResponse(
       res,
-      HttpStatus.StatusInternalServerError,
-      ResponseType.Failure,
+      HttpStatusCode.StatusInternalServerError,
+      ResponseStatus.Error,
       `Error logging user in: ${err.message}`
     )
   }
