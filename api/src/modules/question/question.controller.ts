@@ -4,7 +4,7 @@ import {
   findQuestionByField,
   findQuestionId,
 } from './question.service'
-import { createResponse, HttpStatus, ResponseType } from '../../common'
+import { createResponse, HttpStatusCode, ResponseStatus } from '../../common'
 
 /**
  * saves a question
@@ -28,15 +28,15 @@ export const saveQuestion = async (
 
     return createResponse(
       res,
-      HttpStatus.StatusCreated,
-      ResponseType.Success,
+      HttpStatusCode.StatusCreated,
+      ResponseStatus.Success,
       question
     )
   } catch (err) {
     return createResponse(
       res,
-      HttpStatus.StatusInternalServerError,
-      ResponseType.Failure,
+      HttpStatusCode.StatusInternalServerError,
+      ResponseStatus.Error,
       `Error creating question: ${err.message}`
     )
   }
@@ -57,15 +57,15 @@ export const getQuestions = async (
 
     return createResponse(
       res,
-      HttpStatus.StatusOk,
-      ResponseType.Success,
+      HttpStatusCode.StatusOk,
+      ResponseStatus.Success,
       questions
     )
   } catch (err) {
     return createResponse(
       res,
-      HttpStatus.StatusInternalServerError,
-      ResponseType.Failure,
+      HttpStatusCode.StatusInternalServerError,
+      ResponseStatus.Error,
       `Error getting questions: ${err.message}`
     )
   }
@@ -92,15 +92,15 @@ export const getUserQuestions = async (
 
     return createResponse(
       res,
-      HttpStatus.StatusOk,
-      ResponseType.Success,
+      HttpStatusCode.StatusOk,
+      ResponseStatus.Success,
       questions
     )
   } catch (err) {
     return createResponse(
       res,
-      HttpStatus.StatusInternalServerError,
-      ResponseType.Failure,
+      HttpStatusCode.StatusInternalServerError,
+      ResponseStatus.Error,
       `Error getting user questions: ${err.message}`
     )
   }
@@ -123,15 +123,15 @@ export const getQuestion = async (
 
     return createResponse(
       res,
-      HttpStatus.StatusOk,
-      ResponseType.Success,
+      HttpStatusCode.StatusOk,
+      ResponseStatus.Success,
       question
     )
   } catch (err) {
     return createResponse(
       res,
-      HttpStatus.StatusInternalServerError,
-      ResponseType.Failure,
+      HttpStatusCode.StatusInternalServerError,
+      ResponseStatus.Error,
       `Error getting question: ${err.message}`
     )
   }

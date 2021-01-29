@@ -1,7 +1,7 @@
 import { Response } from 'express'
 import { logger } from './'
 
-interface IHttpStatus {
+interface IHttpStatusCode {
   StatusOk: number
   StatusCreated: number
   StatusBadRequest: number
@@ -11,7 +11,7 @@ interface IHttpStatus {
   StatusInternalServerError: number
 }
 
-export const HttpStatus: IHttpStatus = {
+export const HttpStatusCode: IHttpStatusCode = {
   StatusOk: 200,
   StatusCreated: 201,
   StatusBadRequest: 400,
@@ -21,14 +21,16 @@ export const HttpStatus: IHttpStatus = {
   StatusInternalServerError: 500,
 }
 
-interface IResponseType {
-  Success: boolean
-  Failure: boolean
+interface IResponseStatus {
+  Success: string
+  Failure: string
+  Error: string
 }
 
-export const ResponseType: IResponseType = {
-  Success: true,
-  Failure: false,
+export const ResponseStatus: IResponseStatus = {
+  Success: 'success',
+  Failure: 'fail',
+  Error: 'error',
 }
 
 /**
@@ -36,33 +38,31 @@ export const ResponseType: IResponseType = {
  *
  * @param {Response} res
  * @param {Number} httpStatusCode the status code
- * @param {Boolean} responseType indicates if request was successful or not
+ * @param {String} responseStatus indicates if request was successful or not
  * @param {Object} data the data to be sent over
  */
 export const createResponse = (
   res: Response,
   httpStatusCode: number,
-  responseType: boolean,
+  responseStatus: string,
   // eslint-disable-next-line @typescript-eslint/ban-types
   data: object | string
 ): Response => {
   let responseObject: Record<string, unknown>
 
-  if (responseType) {
+  if (responseStatus === ResponseStatus.Error) {
     responseObject = {
-      status: httpStatusCode,
-      data,
+      status: responseStatus,
+      message: data,
     }
-  } else {
-    responseObject = {
-      status: httpStatusCode,
-      error: data,
-    }
-  }
 
-  if (httpStatusCode === HttpStatus.StatusInternalServerError) {
     logger(module).error(JSON.stringify(responseObject))
   } else {
+    responseObject = {
+      status: responseStatus,
+      data,
+    }
+
     logger(module).info(JSON.stringify(responseObject))
   }
 

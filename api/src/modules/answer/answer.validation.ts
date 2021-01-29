@@ -1,7 +1,7 @@
 import { body, ValidationChain } from 'express-validator'
 import { BaseValidator } from '../../common'
 import { findQuestionByField } from '../question/question.service'
-import { createResponse, HttpStatus, ResponseType } from '../../common'
+import { createResponse, HttpStatusCode, ResponseStatus } from '../../common'
 import { NextFunction, Request, Response } from 'express'
 
 export default class AnswerValidator extends BaseValidator {
@@ -28,8 +28,8 @@ export default class AnswerValidator extends BaseValidator {
       if (!question.length) {
         return createResponse(
           res,
-          HttpStatus.StatusUnprocessableEntity,
-          ResponseType.Failure,
+          HttpStatusCode.StatusUnprocessableEntity,
+          ResponseStatus.Failure,
           'Question does not exist.'
         )
       }
@@ -38,8 +38,8 @@ export default class AnswerValidator extends BaseValidator {
     } catch (e) {
       return createResponse(
         res,
-        HttpStatus.StatusInternalServerError,
-        ResponseType.Failure,
+        HttpStatusCode.StatusInternalServerError,
+        ResponseStatus.Error,
         `Error checking question exist: ${e.message}`
       )
     }

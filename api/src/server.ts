@@ -6,7 +6,7 @@ import morgan from 'morgan'
 import rTracer from 'cls-rtracer'
 import fs from 'fs'
 import path from 'path'
-import { createResponse, HttpStatus, ResponseType } from './common'
+import { createResponse, HttpStatusCode, ResponseStatus } from './common'
 import { userRoute, questionRoute, answerRoute } from './modules'
 
 const server = express()
@@ -43,8 +43,8 @@ server.use(cors())
 server.get('/api', (_, res: Response) =>
   createResponse(
     res,
-    HttpStatus.StatusOk,
-    ResponseType.Success,
+    HttpStatusCode.StatusOk,
+    ResponseStatus.Success,
     'Server is up!'
   )
 )
@@ -56,8 +56,8 @@ server.use('/api/answers', answerRoute)
 server.use((_, res: Response) =>
   createResponse(
     res,
-    HttpStatus.StatusNotFound,
-    ResponseType.Failure,
+    HttpStatusCode.StatusNotFound,
+    ResponseStatus.Failure,
     'Not Found.'
   )
 )

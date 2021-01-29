@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { validationResult } from 'express-validator'
-import { createResponse, HttpStatus, ResponseType } from './'
+import { createResponse, HttpStatusCode, ResponseStatus } from './'
 
 export class BaseValidator {
   static validate(
@@ -20,8 +20,8 @@ export class BaseValidator {
 
     return createResponse(
       res,
-      HttpStatus.StatusUnprocessableEntity,
-      ResponseType.Failure,
+      HttpStatusCode.StatusUnprocessableEntity,
+      ResponseStatus.Failure,
       extractedErrors
     )
   }
