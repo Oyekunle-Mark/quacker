@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  api_test:
+    container_name: stackoverflow_clone_api_test
+    build:
+      dockerfile: Dockerfile.test
+      context: ./api
+    ports:
+      - "5201"
+    volumes:
+      - "./api:/home/node/app"
+      - "./api/docker/run.sh:/usr/bin/run.sh"
+    depends_on:
+      - database_test
+    environment:
+      NODE_ENV: 'test'
+      PORT: 5201
+      DB_USERNAME: 'root'
+      DB_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
+      DB_NAME: 'cloneTest'
+      DB_HOSTNAME: stackoverflow_clone_mysql_test
+      DB_PORT: 3306
+      JWT_SECRET: 'test_you_shall_not_pass'
+    networks:
+      - stackoverflow_clone_network_test
+
+  database_test:
+    image: mysql:8.0.23
+    container_name: stackoverflow_clone_mysql_test
+    ports:
+      - "3306"
+    command: --init-file /data/application/init_test.sql
+    volumes:
+      - ./mysql/init_test.sql:/data/application/init_test.sql
+      - ./mysql/.testData:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_USER: 'root'
+      MYSQL_ROOT_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
+      MYSQL_DATABASE: 'cloneTest'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
+      MYSQL_ROOT_HOST: '%'
+    networks:
+      - stackoverflow_clone_network_test
+
+volumes:
+  mysql_test_volume:
+
+networks:
+  stackoverflow_clone_network_test:
