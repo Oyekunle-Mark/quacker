@@ -28,7 +28,7 @@ export default class AnswerValidator extends BaseValidator {
       if (!question.length) {
         return createResponse(
           res,
-          HttpStatusCode.StatusUnprocessableEntity,
+          HttpStatusCode.StatusBadRequest,
           ResponseStatus.Failure,
           'Question does not exist.'
         )

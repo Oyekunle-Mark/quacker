@@ -41,7 +41,7 @@ export default class UserValidator extends BaseValidator {
       if (user) {
         return createResponse(
           res,
-          HttpStatusCode.StatusUnprocessableEntity,
+          HttpStatusCode.StatusBadRequest,
           ResponseStatus.Failure,
           'Email already exist.'
         )
