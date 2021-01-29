@@ -33,12 +33,10 @@ services:
     command: --init-file /data/application/init_test.sql
     volumes:
       - ./mysql/init_test.sql:/data/application/init_test.sql
-      - ./mysql/.testData:/var/lib/mysql
+      - mysql_test_volume:/var/lib/mysql
     environment:
-      MYSQL_ROOT_USER: 'root'
       MYSQL_ROOT_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
       MYSQL_DATABASE: 'cloneTest'
-      MYSQL_USER: 'root'
       MYSQL_PASSWORD: 'c3VwZXJfc2VjcmV0Cg=='
       MYSQL_ROOT_HOST: '%'
     networks:
