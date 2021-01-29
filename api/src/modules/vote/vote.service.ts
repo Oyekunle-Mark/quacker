@@ -1,27 +1,5 @@
 import { Vote, IVote } from './vote.model'
 
-/**
- * Creates an vote
- *
- * @param {String}  voterId
- * @param {String} questionId
- * @param {String}  voteType
- * @return {Promise<IVote>}
- */
-export const createVote = async (
-  voterId: string,
-  questionId: string,
-  voteType: string
-): Promise<IVote> => {
-  const newAnswer = await Vote.create({
-    voterId,
-    questionId,
-    voteType,
-  })
-
-  return newAnswer.get({ plain: true })
-}
-
 interface IFindVote {
   voterId: string
   questionId: string
