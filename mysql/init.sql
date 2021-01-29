@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS answers (
 );
 
 CREATE TABLE IF NOT EXISTS votes (
+    id VARCHAR(36) NOT NULL,
     voterId VARCHAR(36) NOT NULL,
     questionId VARCHAR(36) NOT NULL,
     voteType ENUM('up', 'down'),

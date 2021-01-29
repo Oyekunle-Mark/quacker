@@ -22,12 +22,18 @@ export const createVote = async (
   return newAnswer.get({ plain: true })
 }
 
+interface IFindVote {
+  voterId: string
+  questionId: string
+}
+
 /**
- * Performs a find query on the vote model
+ * Finds a vote
  * @param {Object} findClause the where clause of the query
- * @return {Promise<IVote[]>}
+ * @return {Promise<IVote>}
  */
-export const findVoteByField = (findClause: IVote): Promise<IVote[]> =>
-  Vote.findAll({
+export const findVoteByField = (findClause: IFindVote): Promise<IVote> =>
+  Vote.findOne({
     where: findClause,
+    raw: true,
   })

@@ -5,7 +5,7 @@ import { findQuestionByField } from '../question/question.service'
 import { createResponse, HttpStatusCode, ResponseStatus } from '../../common'
 import { NextFunction, Request, Response } from 'express'
 
-export default class AnswerValidator extends BaseValidator {
+export default class VoteValidator extends BaseValidator {
   static createVoteValidationRules(): ValidationChain[] {
     return [
       body('questionId')
