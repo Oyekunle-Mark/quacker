@@ -7,7 +7,7 @@
     "build": "tsc",
     "start": "tsc & node .",
     "dev": "tsc -w & nodemon .",
-    "test": "jest"
+    "test": "jest --runInBand --verbose --coverage --forceExit"
   },
   "keywords": [
     "stackoverflow",
