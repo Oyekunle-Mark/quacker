@@ -1,13 +1,10 @@
-import server from './server'
-import supertest from 'supertest'
+import { testServer } from './testHelpers'
 
 jest.useFakeTimers()
 
-const request = supertest(server)
-
 describe('[GET] /api should be welcome message', () => {
   test('Status code 200 at base URL', () => {
-    request
+    testServer
       .get('/api')
       .expect('Content-Type', /json/)
       .expect(200)
@@ -20,7 +17,7 @@ describe('[GET] /api should be welcome message', () => {
 
 describe('[GET] /some/very/bad_url should be be 404', () => {
   test('Status code 404 at bad URL', () => {
-    request
+    testServer
       .get('/some/very/bad_url')
       .expect('Content-Type', /json/)
       .expect(404)
@@ -31,7 +28,7 @@ describe('[GET] /some/very/bad_url should be be 404', () => {
   })
 
   test('Bad URL should produce message', () => {
-    request
+    testServer
       .get('/some/very/bad_url')
       .expect('Content-Type', /json/)
       .expect(404)
