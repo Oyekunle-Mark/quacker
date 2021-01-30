@@ -27,6 +27,25 @@ describe('/api/auth Auth Route', () => {
       })
   })
 
+  test('[POST] /register 400 for existing login', () => {
+    testServer
+      .post('/api/auth/register')
+      .send(user)
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .then((res) => {
+        expect(res.body.data).toEqual('Email already exist.')
+      })
+  })
+
+  test('[POST] /register 422 for bad request body', () => {
+    testServer
+      .post('/api/auth/register')
+      .send({})
+      .expect('Content-Type', /json/)
+      .expect(422)
+  })
+
   test('[POST] /login Log in with correct auth', () => {
     testServer
       .post('/api/auth/login')
