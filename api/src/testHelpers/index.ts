@@ -1,11 +1,13 @@
 import supertest from 'supertest'
 import faker from 'faker'
 import server from '../server'
-import { User } from '../modules/user/user.model'
 
 export const testServer = supertest(server)
 
-export const getUserCreds = async (): Promise<{ id: string, token: string }> => {
+export const getUserCreds = async (): Promise<{
+  id: string
+  token: string
+}> => {
   const user = {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
@@ -18,5 +20,25 @@ export const getUserCreds = async (): Promise<{ id: string, token: string }> => 
   return {
     id: res.body.data.id,
     token: res.body.data.token,
+  }
+}
+
+export const getUserAndQuestionDetails = async (): Promise<{
+  token: string
+  questionId: string
+}> => {
+  const userCreds = await getUserCreds()
+
+  const res = await testServer
+    .post('/api/questions')
+    .send({
+      title: faker.commerce.productName(),
+      description: faker.address.direction(false),
+    })
+    .set('Authorization', `Bearer ${userCreds.token}`)
+
+  return {
+    token: userCreds.token,
+    questionId: res.body.data.id,
   }
 }
