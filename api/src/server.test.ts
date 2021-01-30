@@ -2,8 +2,8 @@ import { testServer } from './testHelpers'
 
 jest.useFakeTimers()
 
-describe('[GET] /api should be welcome message', () => {
-  test('Status code 200 at base URL', () => {
+describe('/ Base URL', () => {
+  test('[GET] /api Status code 200 and message at base URL', () => {
     testServer
       .get('/api')
       .expect('Content-Type', /json/)
@@ -15,8 +15,8 @@ describe('[GET] /api should be welcome message', () => {
   })
 })
 
-describe('[GET] /some/very/bad_url should be be 404', () => {
-  test('Status code 404 at bad URL', () => {
+describe('/some/very/bad_url 404 Endpoint', () => {
+  test('[GET] /some/very/bad_url Status code 404 at bad URL', () => {
     testServer
       .get('/some/very/bad_url')
       .expect('Content-Type', /json/)
@@ -27,7 +27,7 @@ describe('[GET] /some/very/bad_url should be be 404', () => {
       })
   })
 
-  test('Bad URL should produce message', () => {
+  test('[GET] /some/very/bad_url Bad URL should produce message', () => {
     testServer
       .get('/some/very/bad_url')
       .expect('Content-Type', /json/)
