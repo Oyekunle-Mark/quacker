@@ -7,6 +7,11 @@ The API has the following functionalities:
 - Asking and replying questions
 - Upvoting/Downvoting questions
 
+## JSON Response Structure
+The response structure for this API is fashioned after the popular JSend pattern.
+
+Find the JSend specification [here](https://github.com/omniti-labs/jsend)
+
 ## Technologies
 
 #### Infrastructure
