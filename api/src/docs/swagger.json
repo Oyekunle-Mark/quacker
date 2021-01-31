@@ -6,7 +6,7 @@
     "contact": {}
   },
   "host": "localhost:7201",
-  "basePath": "/",
+  "basePath": "/api",
   "securityDefinitions": {},
   "schemes": [
     "http"
@@ -31,13 +31,6 @@
           "application/json"
         ],
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          }
         ],
         "responses": {
           "200": {
@@ -60,13 +53,6 @@
           "application/json"
         ],
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
           {
             "name": "Body",
             "in": "body",
@@ -98,13 +84,6 @@
           "application/json"
         ],
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
           {
             "name": "Body",
             "in": "body",
@@ -138,7 +117,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
             "default": "Bearer {token}",
             "type": "string"
           },
@@ -174,7 +153,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
             "default": "Bearer {token}",
             "type": "string"
           }
@@ -203,7 +182,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
             "default": "Bearer {token}",
             "type": "string"
           }
@@ -232,7 +211,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
             "default": "Bearer {token}",
             "type": "string"
           }
@@ -261,7 +240,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
             "default": "Bearer {token}",
             "type": "string"
           },
@@ -299,7 +278,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
             "default": "Bearer {token}",
             "type": "string"
           },
