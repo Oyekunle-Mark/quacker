@@ -1,0 +1,443 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "StackOverflow Clone",
+    "contact": {}
+  },
+  "host": "localhost:7201",
+  "basePath": "/",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api": {
+      "get": {
+        "description": "Base URL.\nCan be used for wellness and readiness probes",
+        "summary": "Base URL",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "BaseURL",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "description": "Registers a new user",
+        "summary": "Register user",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Registeruser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegisteruserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "description": "Logs a user in using email and password combination",
+        "summary": "Log user in",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Loguserin",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LoguserinRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/questions": {
+      "post": {
+        "summary": "Ask a Question",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "AskaQuestion",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AskaQuestionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Shows all the questions asked by users",
+        "summary": "Get all questions",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Getallquestions",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/questions/user": {
+      "get": {
+        "description": "Find the questions asked by the current user.",
+        "summary": "Get a user's questions",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Getauser'squestions",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/questions/question/d1aa33a3-adf5-4ac5-9262-192ec045bf28": {
+      "get": {
+        "description": "Displays a question in full.\nIncluding answers to the question",
+        "summary": "Get a question",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Getaquestion",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/answers": {
+      "post": {
+        "description": "Answer a question.",
+        "summary": "Answer questions",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Answerquestions",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AnswerquestionsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/votes": {
+      "put": {
+        "description": "Vote (Update/Downvote) a question.\n",
+        "summary": "Vote a question",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Voteaquestion",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/VoteaquestionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RegisteruserRequest": {
+      "title": "RegisteruserRequest",
+      "example": {
+        "firstName": "Mystery",
+        "lastName": "User",
+        "email": "whoami@user.com",
+        "password": "Secretone1"
+      },
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "password"
+      ]
+    },
+    "LoguserinRequest": {
+      "title": "LoguserinRequest",
+      "example": {
+        "email": "whoami@user.com",
+        "password": "Secretone1"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "AskaQuestionRequest": {
+      "title": "AskaQuestionRequest",
+      "example": {
+        "title": "How do i short a stock",
+        "content": "I want to know how to short some stocks and make millions. Please help."
+      },
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "content"
+      ]
+    },
+    "AnswerquestionsRequest": {
+      "title": "AnswerquestionsRequest",
+      "example": {
+        "questionId": "61ca1134-15e2-4d75-811c-4d1be9b7ff8c",
+        "content": "Buy at all time high mate"
+      },
+      "type": "object",
+      "properties": {
+        "questionId": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "questionId",
+        "content"
+      ]
+    },
+    "VoteaquestionRequest": {
+      "title": "VoteaquestionRequest",
+      "example": {
+        "questionId": "d1aa33a3-adf5-4ac5-9262-192ec045bf28",
+        "voteType": "up"
+      },
+      "type": "object",
+      "properties": {
+        "questionId": {
+          "type": "string"
+        },
+        "voteType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "questionId",
+        "voteType"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}

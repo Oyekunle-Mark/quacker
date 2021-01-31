@@ -6,10 +6,13 @@ import morgan from 'morgan'
 import rTracer from 'cls-rtracer'
 import fs from 'fs'
 import path from 'path'
+import swaggerUi from 'swagger-ui-express'
 import { createResponse, HttpStatusCode, ResponseStatus } from './common'
 import { userRoute, questionRoute, answerRoute, voteRoute } from './modules'
 
 const server = express()
+import swaggerDocument from './docs/swagger.json'
+const swaggerSetupOptions = {}
 
 server.use(express.json({ limit: '124kb' }))
 server.use(
@@ -53,6 +56,11 @@ server.use('/api/auth', userRoute)
 server.use('/api/questions', questionRoute)
 server.use('/api/answers', answerRoute)
 server.use('/api/votes', voteRoute)
+server.use(
+  '/api/docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, swaggerSetupOptions)
+) // Server Swagger API Documentation
 
 server.use((_, res: Response) =>
   createResponse(
