@@ -82,10 +82,11 @@ The purpose is to limit scope with a less complex database model.
 duplicating the functionality on answers will just be work best avoided in a technical test with a short time frame to deal with.
   
 
-- SQL scripts are used for creating databases and tables while Sequelize is used for database querying. This is to prove that this author is adept at using both methods of database engine interactions.
+- SQL scripts are used for creating databases and tables while Sequelize is used for database querying. This is to prove that this Author is adept at using both methods of database engine interactions.
 
 
-- The entire thing should be containerized to save others dependency hell and local machine setup. The author believes in a uniform and consistent development environment across board.
+- Since only development configurations are provided, the environment variables and secrets are hot hidden.
+They are provided in the docker-compose* files for easier startup. This would not suffice in a production setup.
   
 
 ## Feedback
@@ -93,6 +94,10 @@ I am of the opinion that the requirements for the test are a little too much for
 Especially the bit about a test coverage threshold. That requires some time investment that might be difficult to find with a busy schedule.
 
 While it's nice that there is a provision for asking for an extension of the submission date, I believe technical tests are best when one can meet expectation and make submission as soon as possible.
+
+## Requirements
+The Author met all requirements except the test threshold of 85% due to current job workloads and demands.
+Coverage was at 72% as at time of publication of this readme.
 
 ## Author
     Oyekunle Oloyede 😎
