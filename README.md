@@ -1,5 +1,5 @@
 # StackOverflow Clone
-
+ 
 A StackOverflow Clone.
 
 The API has the following functionalities:
@@ -36,8 +36,8 @@ You must have Docker and Docker-Compose installed on your machine before you can
 Check if your Docker setup is fine with `docker ps`. You should get some response if it is.
 
 Do the following to start the API:
-- Clone the project with `git clone https://gitlab.com/korapay-engineering/bems-oye-olo.git`
-- Change directory into the project directory with `cd bems-oye-olo`
+- Clone the project with `git clone https://github.com/Oyekunle-Mark/quacker.git`
+- Change directory into the project directory with `cd quacker`
 - Start the development server with `./start.sh`
 
 API becomes available at *http://localhost:7201/api*
@@ -62,7 +62,7 @@ The Postman documentation for the API has been published and can be found [here]
 Use the Docker Compose test configuration for running the integration tests.
 
 Do the following:
-- Clone the project with `git clone https://gitlab.com/korapay-engineering/bems-oye-olo.git` if don't have it already and cd into the project directory.
+- Clone the project with `git clone https://github.com/Oyekunle-Mark/quacker.git` if don't have it already and cd into the project directory.
 - Execute the tests with `./start_test.sh`
 
 The tests will be executed and coverage report will be showed at the end.
@@ -70,5 +70,3 @@ After completion of the tests and coverage report has been shown, use `Ctrl + C`
 
 ## Author
     Oyekunle Oloyede 😎
-    
-    (The gunslinging back-end guy 🤘)
